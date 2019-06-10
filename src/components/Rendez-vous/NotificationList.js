@@ -3,19 +3,11 @@ import _ from 'lodash';
 import { StyleSheet, FlatList, ActivityIndicator, View } from 'react-native'
 import NotificationItem from './NotificationItem'
 
-var date = new Date().getDate(); 
-var month = new Date().getMonth() + 1;
-var year = new Date().getFullYear();
-var hours = new Date().getHours();
-var min = new Date().getMinutes();
-var sec = new Date().getSeconds();
-
 class AppointementList extends Component {
     constructor(props){
         super(props)
         this.state = {
             patient: [],
-            date: year + '/' + month + '/' + date+ ' ' + hours + ':' + min + ':' + sec
         }
     }
 
@@ -27,7 +19,7 @@ class AppointementList extends Component {
         const appointement = _.map(item.appointement, (val, uid) => {
             return { ...val, uid };
         });
-        if(appointement != '' || appointement.length > 0 && appointement.date === this.state.date){
+        if(appointement != '' || appointement.length > 0){
             return(
                 <NotificationItem 
                     patient={item}

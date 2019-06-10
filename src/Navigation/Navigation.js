@@ -7,10 +7,7 @@ import { createSwitchNavigator, createAppContainer, createDrawerNavigator, creat
 import { Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 import Login from '../components/LoginForm'
-import Feed from '../components/Feed'
-import Settings from '../components/Settings'
-import Profile from '../components/Profile'
-import Detail from '../components/Detail'
+import Dashboard from '../components/Dashboard'
 import Patients from '../components/Patients/Patient'
 import PatientAction from '../components/Patients/PatientAction'
 import PatientFavorite from '../components/Patients/PatientFavorite'
@@ -23,11 +20,6 @@ import Notification from '../components/Rendez-vous/Notification'
 import AppointementCreate from '../components/Rendez-vous/AppointementCreate'
 
 let clicked = false;
-// const resetAction = StackActions.reset({
-//     index: 0,
-//     actions: [NavigationActions.navigate({ routeName: 'PatientAction' })],
-//   });
-// const opendraw = <Icon style={{ paddingLeft: 10 }} onPress={() => navigation.openDrawer()} name="md-menu" size={30} />;
 
 const opendraw = (navigation) => {
     return(
@@ -39,83 +31,27 @@ function pressAjout(navigation){
     // clicked = true
     navigation.navigate('PatientCreate')
 }
-const SettingsStack = createStackNavigator({
-Settings: {
-    screen: Settings,
-    navigationOptions: ({ navigation }) => {
-    return {
-        headerTitle: 'Settings',
-        headerLeft: (
-            opendraw
-        )
-    };
-    }
-}
-});
 
-const FeedStack = createStackNavigator(
-{
-    Feed: {
-    screen: Feed,
-    navigationOptions: ({ navigation }) => {
-        return {
-        headerTitle: 'Feed',
-        headerLeft: (
-            opendraw
-        )
-        };
-    }
-    },
-    Detail: {
-    screen: Detail
-    }
-},
-{
-    defaultNavigationOptions: {
-        gesturesEnabled: false
-    }
-}
-);
-
-const ProfileStack = createStackNavigator({
-Profile: {
-        screen: Profile,
-        navigationOptions: ({ navigation }) => {
-        return {
-            headerTitle: 'Profile',
-            headerLeft: (
-                opendraw
-            )
-        };
+const DashboardStack = createStackNavigator({
+    Dashboard: {
+        screen: Dashboard,
+        navigationOptions: () => {
+            return {
+                header: null,
+            };
         }
-    }
-});
-
-const DashboardTabNavigator = createBottomTabNavigator(
-{
-    FeedStack,
-    ProfileStack,
-    SettingsStack
-},
-{
-    navigationOptions: ({ navigation }) => {
-    const { routeName } = navigation.state.routes[navigation.state.index];
-      return {
-          header: null,
-          headerTitle: routeName
-      };
     }
 });
 
 const DashboardStackNavigator = createStackNavigator(
 {
-    DashboardTabNavigator: DashboardTabNavigator
+    DashboardTabNavigator: DashboardStack
 },
 {
     defaultNavigationOptions: ({ navigation }) => {
       return {
           headerLeft: (
-            opendraw
+            opendraw(navigation)
           ),
           headerStyle: {
               borderRadius: 2,
@@ -128,6 +64,7 @@ const DashboardStackNavigator = createStackNavigator(
               elevation: 1,
               marginBottom: 10
           },
+          headerTitle: 'Tableau de bord'
       };
     },
 });
@@ -602,7 +539,18 @@ const ApoitementStackNavigator = createStackNavigator(
 
 const AppDrawerNavigator = createDrawerNavigator({
     Dashboard: {
-        screen: DashboardStackNavigator
+        screen: DashboardStackNavigator,
+        navigationOptions: ({ navigation }) => {
+        // const { routeName } = navigation.state.routes[navigation.state.index];
+            return{
+            drawerIcon: () => (
+                <Ant
+                    name="dashboard"
+                    size={24}
+                />
+            )   
+            }
+        }
     },
     Patients: {
       screen: PatientStackNavigator,

@@ -13,7 +13,7 @@ var sec = new Date().getSeconds();
 
 const INITIAL_STATE = {
 	uid: '',
-	date: year + '/' + month + '/' + date+ ' ' + hours + ':' + min + ':' + sec,
+	date: year + '-' + month + '-' + date+ ' ' + hours + ':' + min + ':' + sec,
 };
 
 export default (state = INITIAL_STATE, action) => {
