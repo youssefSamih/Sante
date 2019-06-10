@@ -17,12 +17,7 @@ import firebase from 'firebase'
 export default class App extends Component {
   componentWillMount(){
     const config = {
-      apiKey: "AIzaSyB1kg49CHdGoOTvY30-xU6IK-v5gmyb6Q4",
-      authDomain: "sante-23def.firebaseapp.com",
-      databaseURL: "https://sante-23def.firebaseio.com",
-      projectId: "sante-23def",
-      storageBucket: "sante-23def.appspot.com",
-      messagingSenderId: "53829401311"
+      //myfirebase
     };
     firebase.initializeApp(config);
   }
