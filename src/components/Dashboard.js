@@ -30,23 +30,23 @@ class Dashboard extends Component {
       return (
         <ScrollView>
           <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Card style={styles.cardStyle}>
-              <CardSection>
-                <Text style={styles.titleTotal}>Total Patient</Text>
-              </CardSection>
+            <Card style={styles.cardStyle1}>
+              <View style={styles.bigNumbr}>
+                <Text style={styles.numbe}>{this.props.patient.length}</Text>
+              </View>
               <View>
-                <Text>{this.props.patient.length}</Text>
+                <Text style={styles.titleTotal}>Total Patient</Text>
               </View>
             </Card>
             <CardSection>
             </CardSection>
             <Card style={styles.cardStyle}>
-              <CardSection>
+              <View style={styles.bigNumbr}>
+                <Text style={styles.numbe}>{countAppointement}</Text>
+              </View>
+              <View>
                 <Text style={styles.titleTotal}>Total Appointment</Text>
-              </CardSection>
-              <CardSection>
-                <Text>{countAppointement}</Text>
-              </CardSection>
+              </View>
             </Card>
           </View>
         </ScrollView>
@@ -56,7 +56,16 @@ class Dashboard extends Component {
 
 const styles = StyleSheet.create({
   cardStyle:{
-    padding: 85,
+    padding: 65,
+    paddingTop: 8,
+    margin: 30,
+    borderStyle : 'dotted',
+    borderWidth : 1,
+    borderColor : '#007aff'
+  },
+  cardStyle1:{
+    padding: 90,
+    paddingTop: 5,
     margin: 30,
     borderStyle : 'dotted',
     borderWidth : 1,
@@ -65,6 +74,14 @@ const styles = StyleSheet.create({
   titleTotal:{
     fontWeight: 'bold',
     fontSize: 20,
+  },
+  numbe:{
+    textAlign: "center",
+    fontSize: 100,
+  },
+  bigNumbr:{
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 })
 

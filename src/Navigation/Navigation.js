@@ -86,8 +86,6 @@ const PatientActionStack = createStackNavigator(
     PatientCreate: {
         screen: PatientCreate,
         navigationOptions: () => {
-            // clicked = true
-            // navigation.dispatch(resetAction);
             return{
                 headerStyle: {
                     borderRadius: 2,
@@ -98,8 +96,7 @@ const PatientActionStack = createStackNavigator(
                     shadowOpacity: 0.8,
                     shadowRadius: 2,
                     elevation: 1,
-                },
-                tabBarVisible: false
+                }
             }
         }
     },
@@ -244,7 +241,8 @@ const PatientTabNavigator = createBottomTabNavigator(
         navigationOptions: ({ navigation }) => {
             if(clicked){
                 return{
-                    header: null
+                    header: null,
+                    tabBarVisible: false
                 }
             }
             return {
